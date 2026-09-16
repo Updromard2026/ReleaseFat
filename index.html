@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Sprint Interval Timer</title>
+<meta name="description" content="Sprint interval training timer with audio cues and haptics, installable on Android and iPhone.">
+<meta name="theme-color" content="#10131a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sprint Timer">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="setup-screen" class="screen">
+  <header class="app-header">
+    <h1>Sprint Interval Timer</h1>
+    <p class="subtitle">Sprint. Rest. Repeat.</p>
+  </header>
+
+  <div class="presets">
+    <button class="preset-btn" data-preset="classic">Classic Sprints<br><span>20s / 2min × 10</span></button>
+    <button class="preset-btn" data-preset="tabata">Tabata<br><span>20s / 10s × 8</span></button>
+    <button class="preset-btn" data-preset="hiit30">30/30 HIIT<br><span>30s / 30s × 12</span></button>
+  </div>
+
+  <form id="config-form" class="config-form">
+    <div class="field">
+      <label for="warmup">Warm-up (sec)</label>
+      <input type="number" id="warmup" min="0" max="600" value="10" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="sprint">Sprint (sec)</label>
+      <input type="number" id="sprint" min="1" max="600" value="20" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="rest">Rest (sec)</label>
+      <input type="number" id="rest" min="1" max="1200" value="120" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="rounds">Rounds</label>
+      <input type="number" id="rounds" min="1" max="99" value="10" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="cooldown">Cool-down (sec)</label>
+      <input type="number" id="cooldown" min="0" max="600" value="0" inputmode="numeric">
+    </div>
+  </form>
+
+  <div class="summary" id="plan-summary"></div>
+
+  <div class="setup-options">
+    <label class="toggle">
+      <input type="checkbox" id="sound-toggle" checked>
+      <span>Sound cues</span>
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="vibrate-toggle" checked>
+      <span>Vibration</span>
+    </label>
+  </div>
+
+  <button id="start-btn" class="primary-btn">Start Workout</button>
+</div>
+
+<div id="workout-screen" class="screen hidden">
+  <div class="progress-wrap">
+    <svg viewBox="0 0 200 200" class="progress-ring">
+      <circle class="ring-bg" cx="100" cy="100" r="90"></circle>
+      <circle id="ring-fg" class="ring-fg" cx="100" cy="100" r="90"></circle>
+    </svg>
+    <div class="ring-content">
+      <div id="phase-label" class="phase-label">GET READY</div>
+      <div id="time-display" class="time-display">10</div>
+      <div id="round-label" class="round-label">Round 1 / 10</div>
+    </div>
+  </div>
+
+  <div class="up-next" id="up-next">Next: Sprint</div>
+
+  <div class="controls">
+    <button id="pause-btn" class="control-btn">Pause</button>
+    <button id="skip-btn" class="control-btn">Skip</button>
+    <button id="stop-btn" class="control-btn danger">End</button>
+  </div>
+</div>
+
+<div id="done-screen" class="screen hidden">
+  <div class="done-content">
+    <div class="done-emoji">🏁</div>
+    <h2>Workout Complete</h2>
+    <p id="done-summary"></p>
+    <button id="done-restart-btn" class="primary-btn">Back to Setup</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
