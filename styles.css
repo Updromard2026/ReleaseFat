@@ -224,9 +224,10 @@ body {
   line-height: 1;
 }
 .round-label {
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 0.95rem;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .up-next {
@@ -272,4 +273,5 @@ body {
 
 @media (max-width: 340px) {
   .time-display { font-size: 3.2rem; }
+  .round-label { font-size: 1.2rem; }
 }
